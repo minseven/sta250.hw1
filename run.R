@@ -1,9 +1,12 @@
-ptm<-proc.time()
+ptm<-proc.time() # start checking processing time
 require(plyr)
+
+# fuction that returns sum of occurences, that is, number of entries
 ft_sum <- function(ftable) {
         return(sum(ftable[,1]))
 }
 
+# function that measures the mean
 ft_mean <- function(ftable,sum) {
         total=0
         for(i in 1:length(ftable[,1])) {
@@ -12,6 +15,7 @@ ft_mean <- function(ftable,sum) {
         return(total/sum)
 }
 
+# function that measures standard deviation
 ft_std <- function(ftable,mean,sum) {
 	total=0
 	for(i in 1:length(ftable[,1])) {
@@ -20,6 +24,7 @@ ft_std <- function(ftable,mean,sum) {
 	return(sqrt(total/sum))
 }
 
+# function that measures median
 ft_med <- function(ftable,sum) {
 	csize=0
 	med=0
@@ -33,8 +38,9 @@ ft_med <- function(ftable,sum) {
 	return(med)
 }
 
-#table=system('tar -Oxf FILAENAME | cut -d , -f 15 | sed \'1d\' | sort | uniq -c | sort -k 1 -r | awk \'{ print $1 "\t" $2}\')'
-ftable=system(sprintf("cat %s | cut -d , -f 15 | sed \'1d\' | sort | uniq -c | sort -k 2 -g -r | grep -v NA | awk \'{ print $1 \"\t\" $2}\'",commandArgs()[4]),intern=TRUE)
+# load the file and make the frequency table
+#ftable=system(sprintf("cat %s/*.csv | cut -d , -f 15 | sed \'1d\' | sort | uniq -c | sort -k 2 -g -r | grep -v NA | awk \'{ print $1 \"\t\" $2}\'",commandArgs()[4]),intern=TRUE)
+ftable=system(sprintf("sort -g %s | uniq -c | sort -k 2 -g -r | awk \'{ print $1 \"\t\" $2}\'",commandArgs()[4]),intern=TRUE)
 ftable=ldply(strsplit(ftable,'\t'))
 ftable$V1=as.numeric(ftable$V1)
 ftable$V2=as.numeric(ftable$V2)
