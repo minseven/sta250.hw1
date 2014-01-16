@@ -4,21 +4,23 @@ The method (5) described in the couse website is implemented in this assignment.
 
 2. Results
 
-Mean:
-SD:
-Median
+Mean:  6.566504 
+Std:  31.55633 
+Med:  0 
 
-3. Delay1987_2012.tar.bz was processed
+3. Delay1987_2013.tar.bz was uncompressed and all files are processed
 
-4. R --slave --args "FILENAME" < run.R
+4. ./run.sh $DIR
 
-Note that FILENAME should be compressed file with "tar.bz2" extension
+Note that $DIR should be the directory containing all csv files
 
 5. Computing time
 
+1455.155 sec
+
 6. RAM
 
-2GB
+4GB
 
 7. CPU Speed
 
@@ -30,11 +32,12 @@ One
 
 9. Compiler
 
+gcc 4.1.2
 
 10. R version
 
-2.15.0
+3.0.2
 
 11. OS
 
-MAC OS X 10.8.5
+Linux (64bit) 2.6.18-194.11.4.el5

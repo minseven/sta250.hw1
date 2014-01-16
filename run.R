@@ -9,19 +9,13 @@ ft_sum <- function(ftable) {
 # function that measures the mean
 ft_mean <- function(ftable,sum) {
         total=0
-        for(i in 1:length(ftable[,1])) {
-                total=total+ftable[i,1]*ftable[i,2]
-        }
-        return(total/sum)
+	return(sum(ftable[,1]*ftable[,2])/sum)
 }
 
 # function that measures standard deviation
 ft_std <- function(ftable,mean,sum) {
-	total=0
-	for(i in 1:length(ftable[,1])) {
-		total=total+(ftable[i,2]-mean)*(ftable[i,2]-mean)*ftable[i,1]
-	}
-	return(sqrt(total/sum))
+	total=sum((ftable[,2]-mean)*(ftable[,2]-mean)*ftable[,1])
+	return(sqrt(total/(sum-1)))
 }
 
 # function that measures median
